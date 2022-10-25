@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/vocabulary.dart';
 
 class EditModal extends StatefulWidget {
   @override
@@ -10,8 +13,14 @@ class _EditModalState extends State<EditModal> {
   final translateController = TextEditingController();
   String dropdownValue = 'English';
   String translateDropdownValue = 'German';
-  final languages = <String>['English', 'Spanish', 'French', 'German'];
-  final emojis = <String>['🇬🇧', '🇪🇸', '🇫🇷', '🇩🇪'];
+  final languages = <String>[
+    'English',
+    'Spanish',
+    'French',
+    'German',
+    'Slovak'
+  ];
+  final emojis = <String>['🇬🇧', '🇪🇸', '🇫🇷', '🇩🇪', '🇸🇰'];
 
   @override
   void dispose() {
@@ -87,6 +96,12 @@ class _EditModalState extends State<EditModal> {
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
+                  Provider.of<Vocabulary>(context, listen: false).addEntry(
+                      VocabularyEntry(
+                          word: editController.text,
+                          translation: translateController.text,
+                          from: dropdownValue,
+                          to: translateDropdownValue));
                 },
                 child: Text('Add'),
               ),

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vocabee/homepage/home.dart';
+import 'package:vocabee/providers/vocabulary.dart';
 import 'package:vocabee/theme.dart';
 
 void main() {
-  runApp(const Vocabee());
+  runApp(
+    ChangeNotifierProvider(create: (context) => Vocabulary(), child: Vocabee()),
+  );
 }
 
 class Vocabee extends StatelessWidget {
@@ -23,4 +27,3 @@ class Vocabee extends StatelessWidget {
     );
   }
 }
-

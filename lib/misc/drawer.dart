@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../editpage/edit.dart';
+import '../vocabularypage/vocabulary.dart';
 import '../homepage/home.dart';
 
 class VocaDrawer extends StatelessWidget {
@@ -20,7 +20,7 @@ class VocaDrawer extends StatelessWidget {
             child: Image.asset('assets/bee.png'),
           ),
           VocaTile(context, 'Home', Vocahome(), selected, 0),
-          VocaTile(context, 'Vocabulary', Vocaedit(), selected, 1),
+          VocaTile(context, 'Vocabulary', VocabularyPage(), selected, 1),
         ],
       ),
     );
