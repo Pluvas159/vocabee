@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 class Vocabulary extends ChangeNotifier {
   List<VocabularyEntry> _vocabulary = [];
@@ -16,6 +18,7 @@ class Vocabulary extends ChangeNotifier {
 
   void removeEntryAt(int index) {
     _vocabulary.removeAt(index);
+    save();
     notifyListeners();
   }
 
@@ -27,6 +30,32 @@ class Vocabulary extends ChangeNotifier {
   void load(List<VocabularyEntry> entries) {
     _vocabulary = entries;
     notifyListeners();
+  }
+
+  void save() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final json = jsonEncode(_vocabulary);
+
+    prefs.setString('vocabulary', jsonEncode(_vocabulary));
+  }
+
+  Future<void> loadFromMemory() async {
+    // load json string from shared preferences as "vocabulary" and convert it to a list of VocabularyEntry
+    // then call load()
+    final prefs = await SharedPreferences.getInstance();
+    final json = prefs.getString('vocabulary');
+    if (json != null) {
+      load(vocabularyFromJson(jsonDecode(json)));
+    }
+  }
+
+  List<VocabularyEntry> vocabularyFromJson(List<dynamic> json) {
+    // convert json string to a list of VocabularyEntry
+    List<VocabularyEntry> entries = [];
+    for (var entry in json) {
+      entries.add(VocabularyEntry.fromJson(entry));
+    }
+    return entries;
   }
 }
 
@@ -55,5 +84,7 @@ class VocabularyEntry {
   Map<String, dynamic> toJson() => {
         'word': word,
         'translation': translation,
+        'from': from,
+        'to': to,
       };
 }

@@ -102,6 +102,7 @@ class _EditModalState extends State<EditModal> {
                           translation: translateController.text,
                           from: dropdownValue,
                           to: translateDropdownValue));
+                  Provider.of<Vocabulary>(context, listen: false).save();
                 },
                 child: Text('Add'),
               ),

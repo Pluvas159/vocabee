@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vocabee/homepage/home.dart';
+import 'package:vocabee/load/splash.dart';
 import 'package:vocabee/providers/vocabulary.dart';
 import 'package:vocabee/theme.dart';
+
+import 'vocabularypage/vocabulary.dart';
 
 void main() {
   runApp(
@@ -20,9 +23,11 @@ class Vocabee extends StatelessWidget {
       theme: AppTheme.dark(),
       darkTheme: AppTheme.dark(),
       themeMode: ThemeMode.system,
-      initialRoute: Vocahome.route,
+      initialRoute: Load.route,
       routes: {
+        Load.route: (context) => const Load(),
         Vocahome.route: (context) => const Vocahome(),
+        VocabularyPage.route: (context) => VocabularyPage(),
       },
     );
   }

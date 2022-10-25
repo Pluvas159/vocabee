@@ -8,6 +8,8 @@ import '../misc/drawer.dart';
 class VocabularyPage extends StatefulWidget {
   VocabularyPage({Key? key}) : super(key: key);
 
+  static const route = '/vocabulary';
+
   @override
   _VocabularyPageState createState() => _VocabularyPageState();
 }
