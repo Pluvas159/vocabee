@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vocabee/homepage/home.dart';
 import 'package:vocabee/load/splash.dart';
+import 'package:vocabee/providers/quiz.dart';
 import 'package:vocabee/providers/vocabulary.dart';
 import 'package:vocabee/quizpage/quiz.dart';
 import 'package:vocabee/theme.dart';
@@ -10,7 +11,13 @@ import 'vocabularypage/vocabulary.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(create: (context) => Vocabulary(), child: Vocabee()),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Vocabulary()),
+        ChangeNotifierProvider(create: (_) => QuizProvider()),
+      ],
+      child: const Vocabee(),
+    ),
   );
 }
 
