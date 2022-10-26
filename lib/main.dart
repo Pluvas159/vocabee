@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:vocabee/homepage/home.dart';
 import 'package:vocabee/load/splash.dart';
 import 'package:vocabee/providers/vocabulary.dart';
+import 'package:vocabee/quizpage/quiz.dart';
 import 'package:vocabee/theme.dart';
 
 import 'vocabularypage/vocabulary.dart';
@@ -28,6 +29,7 @@ class Vocabee extends StatelessWidget {
         Load.route: (context) => const Load(),
         Vocahome.route: (context) => const Vocahome(),
         VocabularyPage.route: (context) => VocabularyPage(),
+        QuizPage.route: (context) => const QuizPage(),
       },
     );
   }
